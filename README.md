@@ -13,7 +13,7 @@ Terraform を使って AWS 上に基本的なネットワーク構成と EC2 を
 EC2はPublic Subnetに配置し、  
 SSHによる疎通確認ができる状態まで構築。
 
-##使用技術
+## 使用技術
 
 - Terraform
 - AWS（EC2 / VPC / Security Group）
