@@ -25,6 +25,6 @@ data "aws_ami" "ubuntu_22_04" {
     values = ["hvm"]
   }
 
-  owners = ["099720109477"] # Canonical
+  owners = ["099720109477"]
   
 }
