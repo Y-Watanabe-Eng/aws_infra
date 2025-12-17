@@ -10,10 +10,21 @@ resource "aws_vpc" "main" {
 }
 
 
-resource "aws_subnet" "public" {
+resource "aws_subnet" "public01" {
   vpc_id            = aws_vpc.main.id
   cidr_block        = "10.0.1.0/24"
   availability_zone = "ap-northeast-1a"
+
+    tags = {
+        Name = "tf-demo"
+        env  = "dev"
+    }
+}
+
+resource "aws_subnet" "public02" {
+  vpc_id            = aws_vpc.main.id
+  cidr_block        = "10.0.2.0/24"
+  availability_zone = "ap-northeast-1c"
 
     tags = {
         Name = "tf-demo"
@@ -46,7 +57,12 @@ resource "aws_route_table" "public_rt" {
 }
 
 
-resource "aws_route_table_association" "public_assoc" {
-  subnet_id      = aws_subnet.public.id
+resource "aws_route_table_association" "public_assoc01" {
+  subnet_id      = aws_subnet.public01.id
+  route_table_id = aws_route_table.public_rt.id
+}
+
+resource "aws_route_table_association" "public_assoc02" {
+  subnet_id      = aws_subnet.public02.id
   route_table_id = aws_route_table.public_rt.id
 }
