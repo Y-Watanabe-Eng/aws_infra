@@ -12,8 +12,9 @@ Terraform を使って AWS 上に基本的なネットワーク構成と EC2 を
 
 EC2はPublic Subnetに配置し、  
 SSHによる疎通確認ができる状態まで構築。
-一時的にSecurity GroupでHTTP(80)を0.0.0.0/0で開放し、Nginxの動作確認。
 
+~~一時的にSecurity GroupでHTTP(80)を0.0.0.0/0で開放し、Nginxの動作確認。~~
+EC2にはロードバランサ経由でのみアクセス可能に変更
 
 ## 使用技術
 
