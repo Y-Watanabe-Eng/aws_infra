@@ -48,7 +48,7 @@ resource "aws_security_group" "web_sg" {
     to_port     = 22
     protocol    = "tcp"
 ##################################
-    cidr_blocks = ["xxx.xxx.xxx.xxx/32"] # 自IP
+    cidr_blocks = ["153.242.230.136/32"] # 自IP
 ##################################
   }
 
