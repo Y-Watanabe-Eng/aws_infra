@@ -3,6 +3,7 @@ resource "aws_instance" "multi" {
   instance_type          = "t3.micro"
   subnet_id              = aws_subnet.public01.id
   vpc_security_group_ids = [aws_security_group.ssh_sg.id, aws_security_group.web_sg.id]
+  associate_public_ip_address = true
   key_name               = aws_key_pair.main.key_name
 
   user_data_base64 = base64encode(<<EOF

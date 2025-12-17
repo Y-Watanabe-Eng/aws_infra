@@ -5,10 +5,12 @@ Terraform を使って AWS 上に基本的なネットワーク構成と EC2 を
 ## 構成概要
 
 - VPC
+- EC2
 - Public Subnet
 - Internet Gateway
 - Security Group
-- EC2
+- Application Load Balancer
+
 
 EC2はPublic Subnetに配置し、  
 SSHによる疎通確認ができる状態まで構築。
@@ -19,5 +21,5 @@ http接続は~~一時的にSecurityGroupでポート80を0.0.0.0/0で開放し�
 ## 使用技術
 
 - Terraform
-- AWS（EC2 / VPC / Security Group）
+- AWS
 - Ubuntu 22.04 LTS
