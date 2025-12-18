@@ -12,25 +12,25 @@ ALB経由でEC2上のNginx/Node.jsアプリへリクエストを転送する。
 - IaC：Terraform
 
 - Clowd：AWS
--- VPC
--- EC2
--- Application Load Balancer
--- Public Subnet
--- Internet Gateway
--- Security Group
+ - VPC
+ - EC2
+ - Application Load Balancer
+ - Public Subnet
+ - Internet Gateway
+ - Security Group
 
 - OS/MW
--- Ubuntu 22.04 LTS
--- Nginx
--- Node.js(Next.js)
+ - Ubuntu 22.04 LTS
+ - Nginx
+ - Node.js(Next.js)
 
 ## ポイント
 
 - EC2初期設定はuser_dataで実行
--- provisionerは起動タイミングによるエラーに悩まされたため、最小限の使用
--- terraform applyのみでWEBサーバが起動
+ - provisionerは起動タイミングによるエラーに悩まされたため、最小限の使用
+ - terraform applyのみでWEBサーバが起動
 - IP/DNSはoutputで管理
--- destroyした時に不便なため実装
+ - destroyした時に不便なため実装
 
 ## 開発の流れ
 
