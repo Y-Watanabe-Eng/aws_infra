@@ -4,9 +4,8 @@
 
 Terraform を用いてAWS上にWEB基盤を構築する学習・ポートフォリオ用リポジトリ。
 ALB経由でEC2上のNginx/Node.jsアプリへリクエストを転送する。
-[参考リンク](http://web-alb-1534830055.ap-northeast-1.elb.amazonaws.com/)
-※検証用途のため、不要時はterraform destroyすることから、
-　稼働時のみの有効リンク
+[参考リンク](http://web-alb-1534830055.ap-northeast-1.elb.amazonaws.com/)<br>
+※検証用途のため、不要時はterraform destroyすることから、稼働時のみの有効リンク
 
 ## 使用技術
 
@@ -27,11 +26,11 @@ ALB経由でEC2上のNginx/Node.jsアプリへリクエストを転送する。
 
 ## ポイント
 
--EC2初期設定はuser_dataで実行
---provisionerは起動タイミングによるエラーに悩まされたため、最小限の使用
---terraform applyのみでWEBサーバが起動
--IP/DNSはoutputで管理
---destroyした時に不便なため実装
+- EC2初期設定はuser_dataで実行
+-- provisionerは起動タイミングによるエラーに悩まされたため、最小限の使用
+-- terraform applyのみでWEBサーバが起動
+- IP/DNSはoutputで管理
+-- destroyした時に不便なため実装
 
 ## 開発の流れ
 
