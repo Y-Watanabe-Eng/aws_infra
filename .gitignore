@@ -8,3 +8,7 @@ id_rsa
 terraform.tfstate
 terraform.tfstate.backup
 crash.log
+node_modules/
+dist/
+.env
+*.log
