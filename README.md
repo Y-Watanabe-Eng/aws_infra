@@ -4,7 +4,7 @@
 
 Terraform を用いてAWS上にWEB基盤を構築する学習・ポートフォリオ用リポジトリ。
 ALB経由でEC2上のNginx/Node.jsアプリへリクエストを転送する。
-http://web-alb-1534830055.ap-northeast-1.elb.amazonaws.com
+http://web-alb-1534830055.ap-northeast-1.elb.amazonaws.com<br>
 ※検証用途のため、不要時はterraform destroyすることから、稼働時のみの有効リンク
 
 ## 使用技術
