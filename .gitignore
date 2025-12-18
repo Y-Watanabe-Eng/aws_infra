@@ -12,3 +12,7 @@ node_modules/
 dist/
 .env
 *.log
+.ssh/
+user_data/
+site/youtube_antenna/.next/
+site/youtube_antenna/node_modules/

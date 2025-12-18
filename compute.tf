@@ -5,20 +5,28 @@ resource "aws_instance" "multi" {
   vpc_security_group_ids = [aws_security_group.ssh_sg.id, aws_security_group.web_sg.id]
   associate_public_ip_address = true
   key_name               = aws_key_pair.main.key_name
-
-  user_data_base64 = base64encode(<<EOF
-#!/bin/bash
-apt-get update
-apt-get install -y nginx
-systemctl start nginx
-systemctl enable nginx
-
-EOF
-  )
-
   tags = {
     Name = "tf-demo"
     Role = "env"
+  }
+  user_data_base64 = base64encode(
+    file("${path.module}/user_data/multi.sh")
+  )
+    connection {
+    type        = "ssh"
+    user     = "ubuntu"
+    private_key = file("${path.module}/.ssh/tf_demo")
+    host        = self.public_ip
+  }
+
+  provisioner "file" {
+    source      = "${path.module}/site/youtube_antenna"
+    destination = "/home/ubuntu/app"
+  }
+
+  provisioner "file" {
+    source      = "${path.module}/nginx/default"
+    destination = "/tmp/default"
   }
 }
 
