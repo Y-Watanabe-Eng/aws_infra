@@ -38,8 +38,10 @@ https://playbass.uk/<br>
 
 ## ネットワーク構成
 - マルチAZ構成（ap-northeast-1a/1c）
-- ALB経由でのみHTTPアクセス可能
-- SSH接続は特定IPのみ許可
+- ALB経由のみHTTPS/HTTPアクセス可能
+- HTTPアクセスはALBでHTTPSへリダイレクト
+- SSH接続は特定IPに限定
+
 
 ## ポイント
 
@@ -52,11 +54,6 @@ https://playbass.uk/<br>
 ### 運用性
 - IP/DNSはoutputで管理
     - destroyした時の再構築を容易に
-
-### セキュリティ
-- ALB経由のみHTTPS/HTTPアクセス可能
-- HTTPアクセスはALBでHTTPSへリダイレクト
-- SSH接続は特定IPに限定
 
 ## 開発の流れ
 
