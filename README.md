@@ -4,42 +4,72 @@
 
 Terraform を用いてAWS上にWEB基盤を構築する学習・ポートフォリオ用リポジトリ。
 ALB経由でEC2上のNginx/Node.jsアプリへリクエストを転送する。
+
 http://web-alb-1534830055.ap-northeast-1.elb.amazonaws.com<br>
 ※検証用途のため、不要時はterraform destroyすることから、稼働時のみの有効リンク
 
 ## 使用技術
 
-- IaC：Terraform
+### IaC
+- Terraform
 
-- Clowd：AWS
-    - VPC
-    - EC2
-    - Application Load Balancer
-    - Public Subnet
-    - Internet Gateway
-    - Security Group
+### Cloud: AWS
+- VPC
+- EC2 (t3.micro)
+- Application Load Balancer
+- Target Group
+- Public Subnet × 2 (マルチAZ: ap-northeast-1a/1c)
+- Internet Gateway
+- Route Table
+- Security Group × 3
+- Key Pair
 
-- OS/MW
-    - Ubuntu 22.04 LTS
-    - Nginx
-    - Node.js(Next.js)
+### OS/Middleware
+- Ubuntu 22.04 LTS
+- Nginx
+- Node.js (Next.js)
+
+## アーキテクチャ
+
+### ネットワーク構成
+- マルチAZ構成（ap-northeast-1a/1c）
+- ALB経由でのみHTTPアクセス可能
+- SSH接続は特定IPのみ許可
 
 ## ポイント
 
+### 自動化
 - EC2初期設定はuser_dataで実行
-    - provisionerは起動タイミングによるエラーに悩まされたため、最小限の使用
+    - パッケージインストール・サービス起動を自動化
+    - provisionerはアプリケーションファイルの転送のみに限定
     - terraform applyのみでWEBサーバが起動
+
+### 運用性
 - IP/DNSはoutputで管理
-    - destroyした時に不便なため実装
+    - destroyした時の再構築を容易に
+
+### セキュリティ
+- ALB経由のみHTTPアクセス可能
+- SSH接続は特定IPに限定
 
 ## 開発の流れ
 
-EC2はPublic Subnetに配置し、  
-SSHによる疎通確認ができる状態まで構築。
+1. EC2をPublic Subnetに配置し、SSHによる疎通確認
+2. ~~初期: SecurityGroupでポート80を0.0.0.0/0で開放~~
+3. 改善: ロードバランサ経由でのみアクセス可能に変更
+4. Nginxの動作確認後、Next.jsアプリケーションを配置
 
-http接続は~~一時的にSecurityGroupでポート80を0.0.0.0/0で開放し、~~<br>
-ロードバランサ経由でのみアクセス可能に変更し、Nginxの動作確認。
-その後、以前作成したWEBサイトを配置し、httpアクセス可能に。
+## セットアップ
 
+```bash
+# 初期化
+terraform init
 
+# 実行計画の確認
+terraform plan
 
+# インフラ構築
+terraform apply
+
+# インフラ削除
+terraform destroy
