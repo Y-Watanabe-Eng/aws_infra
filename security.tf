@@ -42,12 +42,18 @@ resource "aws_security_group" "web_sg" {
 }
 resource "aws_security_group" "alb_sg" {
   name = "alb-sg"
-  description = "allow http from internet"
+  description = "allow http and https from internet"
   vpc_id = aws_vpc.main.id
 
   ingress {
     from_port   = 80
     to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+  ingress {
+    from_port   = 443
+    to_port     = 443
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }

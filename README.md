@@ -5,7 +5,7 @@
 Terraform を用いてAWS上にWEB基盤を構築する学習・ポートフォリオ用リポジトリ。
 ALB経由でEC2上のNginx/Node.jsアプリへリクエストを転送する。
 
-http://web-alb-1534830055.ap-northeast-1.elb.amazonaws.com<br>
+https://playbass.uk/<br>
 ※検証用途のため、不要時はterraform destroyすることから、稼働時のみの有効リンク
 
 
@@ -28,15 +28,15 @@ http://web-alb-1534830055.ap-northeast-1.elb.amazonaws.com<br>
 - Route Table
 - Security Group × 3
 - Key Pair
+- Route53
 
-### OS/Middleware
+### OS/MW
 - Ubuntu 22.04 LTS
 - Nginx
 - Node.js (Next.js)
 
-## アーキテクチャ
 
-### ネットワーク構成
+## ネットワーク構成
 - マルチAZ構成（ap-northeast-1a/1c）
 - ALB経由でのみHTTPアクセス可能
 - SSH接続は特定IPのみ許可
@@ -54,7 +54,8 @@ http://web-alb-1534830055.ap-northeast-1.elb.amazonaws.com<br>
     - destroyした時の再構築を容易に
 
 ### セキュリティ
-- ALB経由のみHTTPアクセス可能
+- ALB経由のみHTTPS/HTTPアクセス可能
+- HTTPアクセスはALBでHTTPSへリダイレクト
 - SSH接続は特定IPに限定
 
 ## 開発の流れ
