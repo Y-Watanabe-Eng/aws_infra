@@ -9,5 +9,5 @@ output "ALB_URL" {
 
 output "Site_URL" {
   description = "URL of the Site"
-  value       = "https://playbase.uk"
+  value       = "https://playbass.uk"
 }
