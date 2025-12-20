@@ -70,6 +70,7 @@ https://playbass.uk/
 3. **(改善)** ALB 経由のみで 80/443 を受ける構成に変更  
 4. Nginx の動作確認後、Next.js アプリを配置  
 5. Route53 + ACM により HTTPS 化
+6. 
 
 ---
 
