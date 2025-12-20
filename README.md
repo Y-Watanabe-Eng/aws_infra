@@ -1,11 +1,12 @@
 # Terraform × AWS ポートフォリオ
 
 ## 概要
-Terraform を用いて AWS 上に Web 基盤を構築する学習・ポートフォリオ用リポジトリ。  
-ALB → Target Group → EC2 (Nginx + Node.js) の一般的な Web サーバ構成を、IaC を通じて再現している。
+Terraformを用いてAWS上にWeb基盤を自動構築することを目的とした学習・ポートフォリオ用リポジトリ。
+ALB（Application Load Balancer）でHTTPS終端を行い、EC2上のNginx/Node.js（Next.js）アプリケーションへ安全にリクエストを転送する。
 
-https://playbass.uk/  
-※検証用途のため、`terraform destroy` 時はアクセス不可。
+## デモ URL
+https://playbass.uk/
+※検証時のみ稼働。不要時は terraform destroy により完全削除。
 
 ---
 
@@ -21,16 +22,16 @@ https://playbass.uk/
 
 ### AWS
 - VPC
-- EC2 (Ubuntu 22.04 / t3.micro)
+- EC2 (Ubuntu 22.04/t3.micro)
 - Application Load Balancer
 - Target Group
-- Public Subnet × 2（マルチAZ: ap-northeast-1a / 1c）
+- Public Subnet ×2（マルチAZ:ap-northeast-1a/1c）
 - Internet Gateway
 - Route Table
-- Security Group × 3
-- IAM Role（SSM 用）
+- Security Group ×2（ALB/EC2）
+- IAM Role（SSM用）
 - Key Pair
-- Route53 + ACM（HTTPS）
+- Route53+ACM（HTTPS）
 
 ### OS / Middleware
 - Ubuntu 22.04 LTS
@@ -45,7 +46,7 @@ https://playbass.uk/
 - HTTP は ALB 側で HTTPS にリダイレクト
 - 管理アクセスは SSH → **SSM Session Manager** へ移行済み
 - YouTube Data API へのアウトバウンド通信のため  
-  **パブリックサブネット運用を採用（NAT Gateway はコスト的に非採用）**
+  **パブリックサブネット運用を採用（NAT Gateway はコスト的に断念）**
 
 ---
 
