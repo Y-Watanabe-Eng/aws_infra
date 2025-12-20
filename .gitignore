@@ -1,5 +1,5 @@
 *.tfstate
-*.tfstate.backup
+*.backup
 *.pem
 *.key
 tf_demo
