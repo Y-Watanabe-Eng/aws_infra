@@ -6,3 +6,8 @@ output "ALB_URL" {
   description = "URL of ALB"
   value       = "http://${aws_lb.web_alb.dns_name}"
 }
+
+output "Site_URL" {
+  description = "URL of the Site"
+  value       = "https://playbase.uk"
+}

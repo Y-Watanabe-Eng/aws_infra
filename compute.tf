@@ -28,6 +28,8 @@ resource "aws_instance" "multi" {
     source      = "${path.module}/nginx/default"
     destination = "/tmp/default"
   }
+
+  iam_instance_profile = aws_iam_instance_profile.ssm_profile.name
 }
 
 data "aws_ami" "ubuntu_22_04" {
