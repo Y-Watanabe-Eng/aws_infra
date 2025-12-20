@@ -1,5 +1,5 @@
-resource "aws_security_group" "web_sg" {
-  name   = "web-sg"
+resource "aws_security_group" "ec2_sg" {
+  name   = "ec2-sg"
   vpc_id = aws_vpc.main.id
 
   ingress {
