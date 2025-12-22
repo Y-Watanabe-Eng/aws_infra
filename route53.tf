@@ -1,8 +1,10 @@
+# Route 53 ホストゾーン
 data "aws_route53_zone" "primary" {
   name         = "playbass.uk."
   private_zone = false
 }
 
+# ACM 検証用 DNS レコード
 resource "aws_route53_record" "acm_validation" {
   for_each = {
     for d in aws_acm_certificate.primary.domain_validation_options : d.domain_name => {
@@ -22,6 +24,7 @@ resource "aws_route53_record" "acm_validation" {
 }
 
 
+# ルートドメイン（playbass.uk）
 resource "aws_route53_record" "root_domain" {
   zone_id = data.aws_route53_zone.primary.zone_id
   name    = "playbass.uk"
@@ -34,6 +37,7 @@ resource "aws_route53_record" "root_domain" {
   }
 }
 
+# www サブドメイン
 resource "aws_route53_record" "www_domain" {
   zone_id = data.aws_route53_zone.primary.zone_id
   name    = "www.playbass.uk"

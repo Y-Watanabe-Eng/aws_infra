@@ -1,3 +1,4 @@
+# アプリケーションロードバランサー
 resource "aws_lb" "web_alb" {
   name = "web-alb"
   load_balancer_type = "application"
@@ -9,6 +10,7 @@ resource "aws_lb" "web_alb" {
   }
 }
 
+# HTTPS リスナー
 resource "aws_lb_listener" "https" {
   load_balancer_arn = aws_lb.web_alb.arn
   port = "443"
@@ -25,6 +27,7 @@ resource "aws_lb_listener" "https" {
     env  = "dev"
   }
 }
+# HTTP リダイレクト
 resource "aws_lb_listener" "http" {
   load_balancer_arn = aws_lb.web_alb.arn
   port = "80"
@@ -43,6 +46,7 @@ resource "aws_lb_listener" "http" {
     env  = "dev"
   }
 }
+# ターゲットグループ
 resource "aws_lb_target_group" "web_tg" {
   name = "web-tg"
   port = 80
@@ -63,6 +67,7 @@ resource "aws_lb_target_group" "web_tg" {
     env  = "dev"
   }
 }
+# EC2 インスタンスをターゲットグループに登録
 resource "aws_lb_target_group_attachment" "web_tg_attachment" {
   target_group_arn = aws_lb_target_group.web_tg.arn
   target_id = aws_instance.multi.id

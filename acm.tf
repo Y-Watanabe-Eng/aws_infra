@@ -1,3 +1,4 @@
+# SSL/TLS 証明書（playbass.uk）
 resource "aws_acm_certificate" "primary" {
   domain_name       = "playbass.uk"
   validation_method = "DNS"
@@ -12,6 +13,7 @@ resource "aws_acm_certificate" "primary" {
 }
 
 
+# 証明書検証（DNS）
 resource "aws_acm_certificate_validation" "primary" {
   certificate_arn         = aws_acm_certificate.primary.arn
   validation_record_fqdns = [for record in aws_route53_record.acm_validation : record.fqdn]

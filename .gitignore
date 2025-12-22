@@ -10,3 +10,4 @@ dist/
 .env
 *.log
 .ssh/
+site/app.zip

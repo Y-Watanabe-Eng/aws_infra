@@ -1,3 +1,4 @@
+# EC2 セキュリティグループ
 resource "aws_security_group" "ec2_sg" {
   name   = "ec2-sg"
   vpc_id = aws_vpc.main.id
@@ -19,6 +20,7 @@ resource "aws_security_group" "ec2_sg" {
         env  = "dev"
     }
 }
+# ALB セキュリティグループ
 resource "aws_security_group" "alb_sg" {
   name = "alb-sg"
   description = "allow http and https from internet"
