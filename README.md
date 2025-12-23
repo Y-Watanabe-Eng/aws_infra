@@ -55,6 +55,8 @@ https://playbass.uk/
 ### インフラ自動化
 - `user_data` で EC2 の初期構築（Nginx / Node.js のセットアップ）
 - `provisioner "file"` により Web コンテンツを転送
+- S3 バケットにzip化したWeb コンテンツファイルをアップロード
+- さらに SSM 経由でファイルを転送し展開する
 - `terraform apply` のみで Web サーバが起動する構成
 
 ### 運用性
