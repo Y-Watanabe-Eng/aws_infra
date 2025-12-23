@@ -5,7 +5,7 @@ Terraformを用いてAWS上にWeb基盤を自動構築することを目的と�
 ALB（Application Load Balancer）でHTTPS終端を行い、EC2上のNginx/Node.js（Next.js）アプリケーションへ安全にリクエストを転送する。
 
 ## デモ URL
-https://playbass.uk/
+https://playbass.uk/ <br>
 ※検証時のみ稼働。不要時は terraform destroy により完全削除。
 
 ---
