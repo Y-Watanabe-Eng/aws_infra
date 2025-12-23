@@ -1,7 +1,7 @@
 # Terraform × AWS ポートフォリオ
 
 ## 概要
-Terraformを用いてAWS上にWeb基盤を自動構築することを目的とした学習・ポートフォリオ用リポジトリ。
+Terraformを用いてAWS上にWeb基盤を自動構築することを目的とした学習・ポートフォリオ用リポジトリ。 <br>
 ALB（Application Load Balancer）でHTTPS終端を行い、EC2上のNginx/Node.js（Next.js）アプリケーションへ安全にリクエストを転送する。
 
 ## デモ URL
