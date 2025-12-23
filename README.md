@@ -30,7 +30,7 @@ https://playbass.uk/
 - Route Table
 - Security Group ×2（ALB/EC2）
 - IAM Role（SSM用）
-- Key Pair
+- S3
 - Route53+ACM（HTTPS）
 
 ### OS / Middleware
