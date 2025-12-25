@@ -30,7 +30,7 @@ https://playbass.uk/ <br>
 - Route Table
 - Security Group ×2（ALB/EC2）
 - IAM Role（SSM用）
-- S3
+- S3（デプロイ管理）
 - Route53+ACM（HTTPS）
 
 ### OS / Middleware
@@ -53,11 +53,27 @@ https://playbass.uk/ <br>
 ## ポイント
 
 ### インフラ自動化
-- `user_data` で EC2 の初期構築（Nginx / Node.js のセットアップ）
-- `provisioner "file"` により Web コンテンツを転送
-- S3 バケットにzip化したWeb コンテンツファイルをアップロード
-- さらに SSM 経由でファイルを転送し展開する
-- `terraform apply` のみで Web サーバが起動する構成
+
+#### デプロイフロー
+1. **アーティファクト作成**
+   - Terraform で Next.js アプリを ZIP 化
+   - Nginx 設定ファイルを準備
+
+2. **S3 アップロード**
+   - アプリケーション ZIP を S3 にアップロード
+   - Nginx 設定を S3 にアップロード
+   - バージョニング有効化で履歴管理
+
+3. **EC2 初期化（user_data）**
+   - パッケージインストール（Nginx, Node.js, PM2）
+   - S3 から自動ダウンロード（AWS CLI 使用）
+   - ZIP 展開・アプリビルド
+   - サービス起動（Nginx + PM2）
+
+4. **管理アクセス**
+   - SSM Session Manager で接続（SSH 不要）
+   - ログは `/var/log/user-data.log` で確認可能
+
 
 ### 運用性
 - `output` で EC2 IP / ALB DNS / ドメインを表示  
